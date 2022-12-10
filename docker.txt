@@ -1,0 +1,131 @@
+                                                                                                                                  Docker
+*--->   docker is  software platform that simplifies the process of builinding , running , and distributing applications
+*--->   docker is a compiter program that performs operating system level virtualization , also knowas "containerization"
+            docker is used to run software packages called "containers"
+
+
+docker follows client-server architecture , which includes the three main componetys that are docker client, docker host , docker registroy
+
+                                                                                    docker architucuture
+
+docker client
+---------------------
+docker client uses commands and RESTAPI to communicate with docker daemon(server)
+   
+   docker build
+   docker pull
+   docker run
+ 
+note: docker client has an ability to communicate with more than one docker deamon
+
+
+docker host
+------------------
+
+docker host is used to provied an environment to excute and run applications. it containers the docker deamon , images , container ,network ,and  stroage.
+
+
+docker registry
+----------------------
+docker registry manges and stroy the docker images
+-- there are two types registries in the docker
+
+---public registry: public registry is also called as docker hub.com
+--- private registry: it is used to share images within the enterprise.
+
+docker deamon:
+------------------- 
+this is brogund priocess ehich takes the commands fired by docker client and sends them to the docker imagess or containers or docker regisrty
+
+
+
+
+MAIN CONTENTES OF DOCKER
+-------------------------------------------
+1)  DCKERIMAGES
+2)  DOCKER CONTAINER
+3)DOCKER FILE
+4)DOCKER VOLUMES
+5) DOCKER BIND MOUNT
+6)DOCKER NETWORK
+7) DOCKER COMPOSE
+8) DOCKER SWAM
+
+
+
+
+DOCKERIMAGES
+----------------------
+an image is a collection of bin/lib that are necessry for an applications to run. all the docker images are present in the cloud site of docker called hub.docker.com
+
+
+DOCKER CONTAINER
+-------------------------------
+ Docker is tool desinged to make it easier to create,deploy, and run application by using containers.
+Containers allow adeveloper to package up an application with alla of the parts it needs . such as libratries and other dependces , and  deploy it has one package
+Each container gets its own isolated user spaces to allows multiple containers to run on a single host machine.
+
+
+
+DOCKER FILE
+--------------------
+INSTRUCTIONS : the instructions are not case-senstive but you must follow conventions which is recommanded to use upper case
+---------------------
+FROM   
+------------
+the frist instruction must be from in order to specify thebase image
+ this instruction is used to set the base image for thr subsequent instructions
+from ubuntu
+
+LABEL
+use LABEL instruction to set label for the image
+we can add labels an images to oranize images of our project
+LABEL vendor/="/tpoint"
+
+RUN
+this instruction is used to execute any command of the current image
+RUN/bin/bash-c 'source $ HOME/bashrc, 'echo$HOME'
+
+CMD
+this is used to execute appliction by the image
+there can be only one cmd in a docker file
+ifwe use more than one cmd only last one will execute.
+cmd ["executable" , "pareml" , "paramz"]
+
+COPY
+thia is instruction is used to copy new file or directory from source to the file system of the container at the destination
+ copy abc/xyz
+
+WORKDIR
+the workdir is used to set the wroking directory for any RUN , CMD COPY instruction that follows it in the dockerfile does not exitx it will be created by default
+
+
+sample docker file
+--------------------------                                                                             
+MAINTAINER  " dattu"
+RUN apt-get update-y
+RUN apt-get install apache2
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name devops   
+
+sample docker file
+--------------------------                                                                             
+
+FROM ubuntu:16.04
+MAINTAINER  " dattu"
+RUN apt-get update-y
+RUN apt-get install apache2
+RUN apt-get instal -y git 
+RUN cd/var/www/html && /
+           git clone copy the url
+COPY  testfiles.txt /var/www/html/
+ENTRYPOINT apachectl -D FOREGROUND
+
+
+
+DOCKER VOLUMES
+----------------------------
+In oreder to be able to save(presist) data and also to share data between container , docker come up with the concept of volumes
+volumes are stored in a part of the host filesystem which is manged by docker (var/lib/docker/volumes/on linux)
+bind mount may be stroed anywhere on the host system
